@@ -5,7 +5,7 @@ const givenLogInAsStandardUser = () => {
     cy.get('div.login-box').find('input[name="user-name"]').type(credentials[0].username)
     cy.get('div.login-box').find('input[name="password"]').type(credentials[0].password)
     cy.get('div.login-box').find('input[id="login-button"]').click()
-    cy.wait(3000)
+    cy.wait(1000)
 }
 
 const givenLogInAsLockedOutUser = () => {
@@ -13,7 +13,12 @@ const givenLogInAsLockedOutUser = () => {
     cy.get('div.login-box').find('input[name="user-name"]').type(credentials[1].username)
     cy.get('div.login-box').find('input[name="password"]').type(credentials[0].password)
     cy.get('div.login-box').find('input[id="login-button"]').click()
-    cy.wait(3000)
+    cy.wait(1000)
+    thenVerifyErrorMessage()
+}
+
+const thenVerifyErrorMessage = () => {
+    cy.get('div.login-box').find('h3').should('have.text', 'Epic sadface: Sorry, this user has been locked out.')
 }
 
 const givenLogInAsProblemUser = () => {
@@ -21,7 +26,14 @@ const givenLogInAsProblemUser = () => {
     cy.get('div.login-box').find('input[name="user-name"]').type(credentials[2].username)
     cy.get('div.login-box').find('input[name="password"]').type(credentials[0].password)
     cy.get('div.login-box').find('input[id="login-button"]').click()
-    cy.wait(3000)
+    cy.wait(1000)
+    thenVerifyProductImages()
+}
+
+const thenVerifyProductImages = () => {
+    cy.get('div.inventory_list').find('img').eq(0).should('be.visible')
+    cy.get('div.inventory_list').find('img').eq(1).should('be.visible')
+    cy.get('div.inventory_list').find('img').eq(2).should('be.visible')
 }
 
 const givenLogInAsPerformanceGlitchUser = () => {
@@ -29,7 +41,7 @@ const givenLogInAsPerformanceGlitchUser = () => {
     cy.get('div.login-box').find('input[name="user-name"]').type(credentials[3].username)
     cy.get('div.login-box').find('input[name="password"]').type(credentials[0].password)
     cy.get('div.login-box').find('input[id="login-button"]').click()
-    cy.wait(3000)
+    cy.wait(1000)
 }
 module.exports = {
     givenLogInAsStandardUser,
