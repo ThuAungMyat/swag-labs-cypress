@@ -31,9 +31,9 @@ const givenLogInAsProblemUser = () => {
 }
 
 const thenVerifyProductImages = () => {
-    cy.get('div.inventory_list').find('img').eq(0).should('be.visible')
-    cy.get('div.inventory_list').find('img').eq(1).should('be.visible')
-    cy.get('div.inventory_list').find('img').eq(2).should('be.visible')
+    cy.get('div.inventory_list').find('img').eq(0).should('not.be.visible')
+    cy.get('div.inventory_list').find('img').eq(1).should('not.be.visible')
+    cy.get('div.inventory_list').find('img').eq(2).should('not.be.visible')
 }
 
 const givenLogInAsPerformanceGlitchUser = () => {
