@@ -17,8 +17,8 @@ module.exports = defineConfig({
     }
 })
 
-const setOrderTotal = (total) => {
-    total = total
+const setOrderTotal = (_total) => {
+    total = _total
     return total
 }
 
