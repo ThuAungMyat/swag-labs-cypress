@@ -1,10 +1,26 @@
-const { defineConfig } = require("cypress");
+const {defineConfig} = require('cypress')
 
+// Variable to store the order number, shared between tasks
+let total
+
+// Export Cypress configuration using defineConfig
 module.exports = defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-    baseUrl: 'https://www.saucedemo.com/v1/index.html'
-  },
-});
+    e2e: {
+        // Setup function for registering Node event listeners
+        setupNodeEvents(on, config) {
+            // Register a custom task 'setOrderNumber' to update the orderNumber variable
+            on('task', {
+                setOrderTotal
+            })
+        },
+        // Set the base URL for the application under test
+        baseUrl: 'https://www.saucedemo.com/v1/index.html'
+    }
+})
+
+const setOrderTotal = (total) => {
+    total = total // Update the global orderNumber variable
+    return total // Return the updated value
+}
+
+const getOrderTotal = () => total
