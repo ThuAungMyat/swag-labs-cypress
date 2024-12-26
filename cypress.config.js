@@ -8,7 +8,6 @@ module.exports = defineConfig({
     e2e: {
         // Setup function for registering Node event listeners
         setupNodeEvents(on, config) {
-            // Register a custom task 'setOrderNumber' to update the orderNumber variable
             on('task', {
                 setOrderTotal
             })
@@ -19,8 +18,8 @@ module.exports = defineConfig({
 })
 
 const setOrderTotal = (total) => {
-    total = total // Update the global orderNumber variable
-    return total // Return the updated value
+    total = total
+    return total
 }
 
 const getOrderTotal = () => total
