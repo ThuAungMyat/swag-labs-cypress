@@ -9,7 +9,8 @@ module.exports = defineConfig({
         // Setup function for registering Node event listeners
         setupNodeEvents(on, config) {
             on('task', {
-                setOrderTotal
+                setOrderTotal,
+                getOrderTotal
             })
         },
         // Set the base URL for the application under test
@@ -17,8 +18,8 @@ module.exports = defineConfig({
     }
 })
 
-const setOrderTotal = (_total) => {
-    total = _total
+const setOrderTotal = (totalPrice) => {
+    total = totalPrice
     return total
 }
 
